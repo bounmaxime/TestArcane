@@ -5,6 +5,7 @@ from bson.json_util import dumps
 properties_mgt_file = Blueprint('properties_mgt_file', __name__)
 properties_col = db['re_properties']
 
+
 @properties_mgt_file.route('/')
 def index():
     return 'Test Arcane'

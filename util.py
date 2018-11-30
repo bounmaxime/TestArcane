@@ -5,6 +5,7 @@ JSON_MIME_TYPE = 'application/json'
 client = MongoClient('mongodb://localhost:27017/')
 db = client['Real_estate_manager']
 
+
 def json_response(data='', status=200, headers=None):
     headers = headers or {}
     if 'Content-Type' not in headers:

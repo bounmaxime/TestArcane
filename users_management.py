@@ -1,4 +1,3 @@
-from datetime import date
 from flask import Flask, jsonify, request, Blueprint
 from util import json_response, JSON_MIME_TYPE, db
 from bson.json_util import dumps
