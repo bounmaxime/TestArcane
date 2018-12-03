@@ -1,6 +1,12 @@
 from flask import make_response
 from pymongo import MongoClient
+from flask_bcrypt import Bcrypt
+from flask import Flask, session
+from flask_login import LoginManager
 
+app = Flask(__name__)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
 JSON_MIME_TYPE = 'application/json'
 client = MongoClient('mongodb://localhost:27017/')
 db = client['Real_estate_manager']
@@ -13,7 +19,8 @@ def json_response(data='', status=200, headers=None):
     return make_response(data, status, headers)
 
 
-def search_property(re_properties, property_id):
-    for re_property in re_properties:
-        if re_properties['id'] == property_id:
-            return re_property
+def is_logged_in():
+    if 'Username' in session:
+        return True
+    else:
+        return False
