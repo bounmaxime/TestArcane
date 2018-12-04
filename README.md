@@ -6,7 +6,11 @@ This repository is a RESTful API using the Flask web framework and MongoDB datab
 - Manage your profile (edit user)
 - Manage your properties (add, edit and delete a property)
 
-
+### Prerequisites
+- Python 3
+- Git
+- An API testing tool such as Insomnia or Postman in order to send the requests.
+- MongoDB running on localhost:27017
 
 
 ### Install the application

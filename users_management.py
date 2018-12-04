@@ -44,7 +44,7 @@ def register():
         return json_response(error, 400)
 
     data = request.json
-    if not all([data.get('First name'), data.get('Last name'), data.get('Username'), data.get('Password')]):
+    if not all([data.get('First Name'), data.get('Last Name'), data.get('Username'), data.get('Password')]):
         error = jsonify({'Error': 'field(s) missing'})
         return json_response(error, 400)
     hashed_password = bcrypt.generate_password_hash(data.get('Password')).decode('utf-8')
