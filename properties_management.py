@@ -35,7 +35,7 @@ def re_properties_by_city():
         return json_response(error, 400)
     else:
         property_req = properties_col.find({'City': data.get('city')})
-        if (property_req.count() == 0):
+        if property_req.count() == 0:
             error = jsonify({'Error': 'No property found'})
             return json_response(error, 400)
         return json_response(dumps(property_req), status=200)
@@ -49,13 +49,16 @@ def create_re_property():
         error = jsonify({'Error': 'Invalid Content-Type'})
         return json_response(error, 400)
 
-    data = request.json
-    if not all([data.get('Name')]):
-        error = jsonify({'Error': 'Name missing'})
-        return json_response(error, 400)
+    if is_logged_in():
+        data = request.json
+        if not all([data.get('Name'), data.get('Landlord')]):
+            error = jsonify({'Error': 'Name/landlord missing'})
+            return json_response(error, 400)
 
-    properties_col.insert(data)
-    return json_response(data='property added', status=200)
+        properties_col.insert(data)
+        return json_response(data='property added', status=200)
+    else:
+        return json_response(data=jsonify({'error': 'Please log in first!'}), status=400)
 
 
 @properties_mgt_file.route('/editproperty', methods=['POST'])
